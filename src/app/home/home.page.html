@@ -1,27 +1,32 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>
-      Home
+      Bookings
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let item of items">
-      <ion-icon [name]="item.icon" slot="start"></ion-icon>
-      {{item.title}}
-      <div class="item-note" slot="end">
-        {{item.note}}
-      </div>
+    <ion-item *ngFor="let booking of bookings">
+      <ion-icon name="paper" ></ion-icon>
+      <div class="info-card">
+        <div class="item-note-left">
+          <p><strong>BookingId</strong>:<br> {{booking.bookingId }}</p>
+          <p><strong>Cliente</strong>: {{booking.tutenUserClient.firstName + " " + booking.tutenUserClient.lastName }}</p>
+        </div>
+        <div class="item-note-rigth">
+          <p><strong>Fecha de Creación</strong>: {{booking.bookingTime | date}}</p>
+          <p><strong>Precio</strong>: {{ booking.bookingPrice }}</p>
+        </div>
+        <div class="item-note">
+          <p><strong>Dirección</strong>: {{ booking.locationId.streetAddress }}</p>
+        </div>
+     </div>
     </ion-item>
   </ion-list>
-  <!--
-    <div *ngIf="selectedItem" padding>
-      You navigated here from <b>{{selectedItem.title }}</b>
-    </div>
-  -->
+
 </ion-content>
