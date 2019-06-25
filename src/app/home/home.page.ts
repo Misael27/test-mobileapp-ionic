@@ -10,6 +10,9 @@ import { Booking } from '../shared/models';
 export class HomePage implements OnInit {
 
   public bookings:Array<Booking>;
+  public bookingsSelected:Array<Booking>;
+  public searchEnabled: boolean = false;
+  public searchText: string= "";
 
   constructor(
     private bookingService: BookingService
@@ -18,7 +21,20 @@ export class HomePage implements OnInit {
   ngOnInit() {
     this.bookingService.getAll("contacto@tuten.cl").subscribe( data => {
       this.bookings = data;
+      this.bookingsSelected = data;
     });
+  }
+
+  showSearch () {
+    this.searchEnabled = !this.searchEnabled;
+    if (!this.searchEnabled) {
+      this.bookingsSelected = this.bookings;
+      this.searchText = "";
+    }
+  }
+
+  filterResult() {
+    this.bookingsSelected = this.bookings.filter( x => (this.searchText == "" ||  x.bookingId.toString().includes(this.searchText) || x.bookingPrice.toString().includes(this.searchText)));
   }
 
 }

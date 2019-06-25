@@ -3,15 +3,23 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
+    <ion-buttons slot="secondary">
+        <ion-button (click)="showSearch()">
+          <ion-icon slot="icon-only" name="search"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+
     <ion-title>
       Bookings
     </ion-title>
   </ion-toolbar>
+ 
 </ion-header>
 
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let booking of bookings">
+    <ion-searchbar *ngIf="searchEnabled" placeholder="Buscar BookingID o Precio"(ionChange)="filterResult()" [(ngModel)]="searchText"></ion-searchbar>
+    <ion-item *ngFor="let booking of bookingsSelected">
       <ion-icon name="paper" ></ion-icon>
       <div class="info-card">
         <div class="item-note-left">
@@ -20,7 +28,7 @@
         </div>
         <div class="item-note-rigth">
           <p><strong>Fecha de Creación</strong>: {{booking.bookingTime | date}}</p>
-          <p><strong>Precio</strong>: {{ booking.bookingPrice }}</p>
+          <p><strong>Precio</strong>: {{ booking.bookingPrice | currency }}</p>
         </div>
         <div class="item-note">
           <p><strong>Dirección</strong>: {{ booking.locationId.streetAddress }}</p>
