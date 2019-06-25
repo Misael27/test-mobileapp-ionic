@@ -1,11 +1,12 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 
 import { HomePage } from './home.page';
 
 describe('HomePage', () => {
   let component: HomePage;
   let fixture: ComponentFixture<HomePage>;
+  let homePage: HTMLElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -15,8 +16,8 @@ describe('HomePage', () => {
       .compileComponents();
   }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(HomePage);
+  beforeEach(async () => {
+    fixture = await TestBed.createComponent(HomePage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -24,4 +25,11 @@ describe('HomePage', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should have a list of 10 elements', () => {
+    homePage = fixture.nativeElement;
+    const items = homePage.querySelectorAll('ion-item');
+    expect(items.length).toEqual(10);
+  });
+
 });

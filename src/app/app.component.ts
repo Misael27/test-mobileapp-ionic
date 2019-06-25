@@ -3,12 +3,16 @@ import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { User } from './shared/models';
+import { AuthService } from './shared/services';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html'
 })
 export class AppComponent {
+  currentUser: User;
+
   public appPages = [
     {
       title: 'Home',
@@ -16,24 +20,31 @@ export class AppComponent {
       icon: 'home'
     },
     {
-      title: 'List',
-      url: '/list',
-      icon: 'list'
+      title: 'Salir',
+      url: '/login',
+      icon: 'log-out'
     }
   ];
 
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private authService: AuthService
   ) {
     this.initializeApp();
   }
 
   initializeApp() {
+    this.authService.currentUser.subscribe(x => this.currentUser = x);
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
   }
+  
+  logout(){
+    this.authService.logout();
+  }
+  
 }

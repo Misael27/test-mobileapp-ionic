@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Ionic Test</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-row>
+    <ion-col class="center">
+        <ion-img class="principal_logo" src="../assets/icon/logo.png"></ion-img>
+    </ion-col>
+  </ion-row>
+  <br>
+  <ion-row>
+    <ion-col>
+      <form class="center" name="form" (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+        <ion-item>
+          <ion-label position="floating">Usuario</ion-label>
+          <ion-input type="text" name="email" formControlName="email"></ion-input>
+        </ion-item>
+        <ion-text *ngIf="f.email.invalid && f.email.touched" color="danger">
+          <h6 *ngIf="f.email.errors.required; else elseONE ">
+            Este campo es requerido.
+          </h6>
+          <ng-template #elseONE >
+            <h6 *ngIf="f.email.errors.email; else elseTWO ">
+              Esto no es un correo electrónico.
+            </h6>
+          </ng-template>
+        </ion-text>
+  
+        <ion-item>
+          <ion-label position="floating">Contraseña</ion-label>
+          <ion-input type="password" name="password" formControlName="password"></ion-input>
+        </ion-item>
+        <ion-text *ngIf="f.password.invalid &&f.password.touched" color="danger">
+          <h6 *ngIf="f.password.errors.required; else elseONE">
+            Este campo es requerido.
+          </h6>
+        </ion-text>
+
+        <br>
+        
+
+        <ion-button expand="full" type="submit" [disabled]="f.invalid">
+          Iniciar
+        </ion-button> 
+        
+
+      </form>
+    </ion-col>
+  </ion-row>        
+</ion-content>
