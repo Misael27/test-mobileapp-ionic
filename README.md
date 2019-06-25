@@ -14,6 +14,5 @@
 ## Correr en android o ios
     ionic cordova run [<platform>]
     
- 
-#### Documentación de IONIC 4:
-* [documentation] - Postman web, API Doc.
+    
+    
