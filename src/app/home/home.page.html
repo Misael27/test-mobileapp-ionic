@@ -3,7 +3,12 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-buttons slot="secondary">
+    <ion-buttons slot="primary">
+        <ion-button (click)="showFilters()">
+          <ion-icon slot="icon-only" name="funnel"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <ion-buttons slot="secondary">
         <ion-button (click)="showSearch()">
           <ion-icon slot="icon-only" name="search"></ion-icon>
         </ion-button>
@@ -17,8 +22,38 @@
 </ion-header>
 
 <ion-content>
+
+  <ion-list *ngIf="showFilter">
+      <ion-list-header>
+          <ion-label>Filtrar bookings</ion-label>
+        </ion-list-header>
+      <ion-item>
+        <ion-label>BookingId</ion-label>
+        <ion-select [interfaceOptions]="customPopoverOptions" interface="popover" placeholder="Seleccione un criterio" [(ngModel)]="bookingIDOp" (ionChange)="filterResult()">
+          <ion-select-option value="asc">Ascendente</ion-select-option>
+          <ion-select-option value="desc">Descendente</ion-select-option>
+          <ion-select-option value="">Ninguno</ion-select-option>
+        </ion-select>
+      </ion-item>
+  
+      <ion-item>
+          <ion-label>bookingPrice</ion-label>
+          <ion-select [interfaceOptions]="customPopoverOptions" interface="popover" placeholder="Seleccione un criterio" [(ngModel)]="bookingPrice" (ionChange)="filterResult()">
+            <ion-select-option value="asc">Ascendente</ion-select-option>
+            <ion-select-option value="desc">Descendente</ion-select-option>
+            <ion-select-option value="">Ninguno</ion-select-option>
+          </ion-select>
+        </ion-item>
+          
+    </ion-list>
+    
   <ion-list>
-    <ion-searchbar *ngIf="searchEnabled" placeholder="Buscar BookingID o Precio"(ionChange)="filterResult()" [(ngModel)]="searchText"></ion-searchbar>
+    <ion-searchbar *ngIf="searchEnabled" placeholder="Buscar BookingID o Precio" (ionChange)="filterResult()" [(ngModel)]="searchText"></ion-searchbar>
+    <ion-chip *ngFor="let filter of filters">
+        <ion-label>{{filter}}</ion-label>
+        <ion-icon name="close-circle" (click)="removeFilter(filter)"></ion-icon>
+    </ion-chip>
+
     <ion-item *ngFor="let booking of bookingsSelected">
       <ion-icon name="paper" ></ion-icon>
       <div class="info-card">
