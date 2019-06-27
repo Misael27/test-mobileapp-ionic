@@ -1,0 +1,23 @@
+<ion-list>
+    <ion-list-header>
+        <ion-label>Filtrar bookings</ion-label>
+      </ion-list-header>
+    <ion-item>
+      <ion-label>BookingId</ion-label>
+      <ion-select [interfaceOptions]="customPopoverOptions" interface="popover" placeholder="Seleccione un criterio" [(ngModel)]="bookingIDOp" (ionChange)="changeFilter()">
+        <ion-select-option value="asc">Ascendente</ion-select-option>
+        <ion-select-option value="desc">Descendente</ion-select-option>
+        <ion-select-option value="">Ninguno</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+        <ion-label>bookingPrice</ion-label>
+        <ion-select [interfaceOptions]="customPopoverOptions" interface="popover" placeholder="Seleccione un criterio" [(ngModel)]="bookingPrice" (ionChange)="changeFilter()">
+          <ion-select-option value="asc">Ascendente</ion-select-option>
+          <ion-select-option value="desc">Descendente</ion-select-option>
+          <ion-select-option value="">Ninguno</ion-select-option>
+        </ion-select>
+      </ion-item>
+        
+  </ion-list>

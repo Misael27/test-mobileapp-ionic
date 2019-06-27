@@ -6,6 +6,9 @@ import { RouterModule } from '@angular/router';
 
 import { HomePage } from './home.page';
 
+import { FilterComponent } from '../shared/components/filter/filter.component';
+
+
 
 @NgModule({
   imports: [
@@ -19,6 +22,8 @@ import { HomePage } from './home.page';
       }
     ])
   ],
-  declarations: [HomePage],
+  declarations: [HomePage, FilterComponent],
+  entryComponents: [FilterComponent]
+
 })
 export class HomePageModule {}

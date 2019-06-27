@@ -81,5 +81,11 @@ export class HomePage implements OnInit {
     this.filterResult();
   }
 
+  onChangeFilter(filters:any) {
+    this.bookingIDOp = filters.bookingIDOp;
+    this.bookingPrice = filters.bookingPrice;
+    this.filterResult();
+  }
+
   
 }

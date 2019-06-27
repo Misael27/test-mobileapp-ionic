@@ -23,31 +23,10 @@
 
 <ion-content>
 
-  <ion-list *ngIf="showFilter">
-      <ion-list-header>
-          <ion-label>Filtrar bookings</ion-label>
-        </ion-list-header>
-      <ion-item>
-        <ion-label>BookingId</ion-label>
-        <ion-select [interfaceOptions]="customPopoverOptions" interface="popover" placeholder="Seleccione un criterio" [(ngModel)]="bookingIDOp" (ionChange)="filterResult()">
-          <ion-select-option value="asc">Ascendente</ion-select-option>
-          <ion-select-option value="desc">Descendente</ion-select-option>
-          <ion-select-option value="">Ninguno</ion-select-option>
-        </ion-select>
-      </ion-item>
-  
-      <ion-item>
-          <ion-label>bookingPrice</ion-label>
-          <ion-select [interfaceOptions]="customPopoverOptions" interface="popover" placeholder="Seleccione un criterio" [(ngModel)]="bookingPrice" (ionChange)="filterResult()">
-            <ion-select-option value="asc">Ascendente</ion-select-option>
-            <ion-select-option value="desc">Descendente</ion-select-option>
-            <ion-select-option value="">Ninguno</ion-select-option>
-          </ion-select>
-        </ion-item>
-          
-    </ion-list>
+  <app-filter *ngIf="showFilter" [bookingIDOp] = "bookingIDOp" [bookingPrice]="bookingPrice" (onChangeFilter)="onChangeFilter($event)"></app-filter>
     
   <ion-list>
+
     <ion-searchbar *ngIf="searchEnabled" placeholder="Buscar BookingID o Precio" (ionChange)="filterResult()" [(ngModel)]="searchText"></ion-searchbar>
     <ion-chip *ngFor="let filter of filters">
         <ion-label>{{filter}}</ion-label>
