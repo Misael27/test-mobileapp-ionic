@@ -14,6 +14,6 @@
 ## Correr en android o ios
     ionic cordova run [<platform>]
     
-También pueden descargar un apk de ejemplo [aquí](https://drive.google.com/file/d/1RH3Igt0OvUxJ_dkVDzUHNAdSDtDqehcr/view?usp=sharing)
+También pueden descargar un apk de ejemplo [aquí](https://drive.google.com/file/d/1ND--Fto3nMsuHL--5zUdi3XYE1U2Nrqd/view?usp=sharing)
     
     
