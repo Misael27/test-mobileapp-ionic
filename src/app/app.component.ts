@@ -38,7 +38,12 @@ export class AppComponent {
   initializeApp() {
     this.authService.currentUser.subscribe(x => this.currentUser = x);
     this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
+      if(this.platform.is('android')) {
+        this.statusBar.styleBlackOpaque();
+      }
+      else {
+        this.statusBar.styleDefault();
+      }
       this.splashScreen.hide();
     });
   }
